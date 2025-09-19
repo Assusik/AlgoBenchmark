@@ -1,22 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AlgoBenchmark.Core.Interfaces;
+using AlgoBenchmark.Core.Interfaces.Enums;
+using AlgoBenchmark.Core.Services;
 
 namespace AlgoBenchmark.Core.OtherAlgos
 {
     //Алгоритм работает поразрядно, начиная с младшего разряда
     //(Least Significant Digit) и заканчивая старшим. На каждом шаге он использует
     //стабильную сортировку (чаще всего — сортировку подсчетом) для упорядочивания элементов по текущему разряду.
-    internal  class LSDRadixSort : IAlgorithm
+    class LSDRadixSort : AlgoBase
     {
-        public static void Run(int[] array)
+        public override AlgorithmType Type => AlgorithmType.Vector;
+        public override object Execute(int n)
         {
+            
+            var array = DataGenerator.GenerateVector(n);
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            stopwatch.Start();
             if (array == null || array.Length <= 1)
             {
-                return;
+                return 0;
             }
 
             var max = FindMaxElement(array);
@@ -24,6 +32,7 @@ namespace AlgoBenchmark.Core.OtherAlgos
             {
                 CountingSortByDigit(array, exp);
             }
+            return 0;
            
 
         }

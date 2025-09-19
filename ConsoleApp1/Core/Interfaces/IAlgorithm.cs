@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AlgoBenchmark.Core.Interfaces.Enums;
 
 namespace AlgoBenchmark.Core.Interfaces
 {
-    internal interface IAlgorithm
+    interface IAlgorithm
     {
-        static void Run() { }
+        public object Execute(int n);
+        public object Execute(int n, int m);
+        public AlgorithmType Type { get; }
 
+        
     }
 }

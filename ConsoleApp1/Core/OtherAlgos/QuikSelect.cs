@@ -1,23 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AlgoBenchmark.Core.Interfaces;
+using AlgoBenchmark.Core.Interfaces.Enums;
+using AlgoBenchmark.Core.Services;
 
 namespace AlgoBenchmark.Core.OtherAlgos
 {
-    public  class QuickSelect : IAlgorithm
+    public  class QuickSelect : AlgoBase
     {
+        public override AlgorithmType Type => AlgorithmType.Vector;
+
         // Основной публичный метод для нахождения k-го наименьшего элемента
-        public static int Run(int[] array, int k)
+        public object Execute(int n, int k)
         {
+            var array = DataGenerator.GenerateVector(n);
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            stopwatch.Start();
             if (array == null || array.Length == 0)
                 throw new ArgumentException("Массив не может быть пустым");
             if (k < 1 || k > array.Length)
                 throw new ArgumentException("k должно быть в диапазоне от 1 до длины массива");
 
             // k-й наименьший элемент имеет индекс k-1 в отсортированном массиве
+            stopwatch.Start();
             return QuickSelectRecursive(array, 0, array.Length - 1, k - 1);
         }
 

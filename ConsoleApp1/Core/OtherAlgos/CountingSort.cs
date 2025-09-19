@@ -1,15 +1,24 @@
 ﻿using System;
+using System.Diagnostics;
 using AlgoBenchmark.Core.Interfaces;
+using AlgoBenchmark.Core.Interfaces.Enums;
+using AlgoBenchmark.Core.Services;
 
 namespace AlgoBenchmark.Core.OtherAlgos
 {
-    public class CountingSort : IAlgorithm
+    public class CountingSort : AlgoBase
     {
-        public static void Run(int[] array)
+
+
+        public override AlgorithmType Type => AlgorithmType.Vector;
+
+        public override object Execute(int ArrayLength)
         {
-            
+            var array = DataGenerator.GenerateVector(ArrayLength);
+
+            Stopwatch stopwatch = Stopwatch.StartNew();
             if (array == null || array.Length <= 1)
-                return;
+                return 0;
 
             // 1. Находим минимальное и максимальное значение
             int min = array[0];
@@ -52,6 +61,9 @@ namespace AlgoBenchmark.Core.OtherAlgos
 
             // 7. Копируем отсортированный массив обратно в исходный
             Array.Copy(output, array, array.Length);
+            stopwatch.Stop();
+            return stopwatch.ElapsedMilliseconds;
+            ;
         }
 
         
