@@ -9,11 +9,6 @@
 	</PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Core\VectorAlgos\" />
-    <Folder Include="Core\MatrixAlgos\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <EditorConfigFiles Remove="D:\лабы\ConsoleApp1\ConsoleApp1\.editorconfig" />
   </ItemGroup>
 
